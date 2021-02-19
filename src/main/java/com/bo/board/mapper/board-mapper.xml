@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.login.dto.BoardBean">
+
+<insert id="insertBoard" parameterType="Boardbean">
+	INSERT INTO NOTICEBOARD VALUES(NOTICEBOARD_SEQ.NEXTVAL,#{title},#{writer},#{contents},#{filename,jdbcType=VARCHAR},SYSDATE,#{hit})
+</insert>
+
+
+<select id="selectBoard" resultType="Boardbean" >
+	SELECT NO, TITLE, WRITER, CONTENTS, FILENAME, REGDATE, HIT FROM NOTICEBOARD
+</select>
+
+<select id="searchBoard" resultType="Boardbean" parameterType="String">
+	SELECT NO, TITLE, WRITER, CONTENTS, FILENAME, REGDATE, HIT FROM NOTICEBOARD WHERE TITLE LIKE '%'||#{VALUE}||'%' OR
+	WRITER LIKE '%'||#{VALUE}||'%'
+</select>
+
+<select id="selectInfo" parameterType="int" resultType="BoardBean">
+	SELECT * FROM NOTICEBOARD WHERE NO=#{no}
+</select>
+
+<delete id="deleteBoard" parameterType="int">
+	DELETE FROM NOTICEBOARD WHERE NO=#{no}
+</delete>
+
+<update id="updateHitBoard" parameterType="int">
+	UPDATE NOTICEBOARD SET HIT=HIT+1 WHERE NO=#{no}
+</update>
+
+<update id="ModifyBoard" parameterType="BoardBean">
+	UPDATE NOTICEBOARD SET WRITER=#{writer},TITLE=#{title},CONTENTS=#{contents},FILENAME=#{filename,jdbcType=VARCHAR},REGDATE=SYSDATE WHERE NO=#{no}
+</update>
+
+<update id="ModifyBoard2" parameterType="BoardBean">
+	UPDATE NOTICEBOARD SET WRITER=#{writer},TITLE=#{title},CONTENTS=#{contents},null,REGDATE=SYSDATE WHERE NO=#{no}
+</update>
+
+<select id="orderNew" resultType="BoardBean">
+	SELECT * FROM NOTICEBOARD ORDER BY REGDATE DESC
+</select>
+
+<select id="orderOld" resultType="BoardBean">
+	SELECT * FROM NOTICEBOARD ORDER BY REGDATE
+</select>
+</mapper>

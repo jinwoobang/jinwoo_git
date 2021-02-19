@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.login.dto.MemberBean">
+<insert id="insertMember" parameterType="bean">
+	INSERT INTO RESIJOIN VALUES(RESIJOIN_SEQ.NEXTVAL,#{id},#{name},#{pw},#{email},#{address},#{hp}
+	,#{birth},#{pwq},#{pwa})
+</insert>
+
+<select id="idCheck" parameterType="java.lang.String" resultType="java.lang.String">
+	SELECT ID FROM RESIJOIN WHERE ID=#{id}
+</select>
+
+<select id="loginCheck" parameterType="java.lang.String" resultType="java.lang.String">
+	SELECT PW FROM RESIJOIN WHERE ID=#{id}
+</select>
+</mapper>
