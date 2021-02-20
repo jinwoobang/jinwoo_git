@@ -22,6 +22,7 @@ $(function(){
 <form action="/web/Example.do" method="post" name="frm">
 <input type="text" name="sb" id="sbn" placeholder="이름">
 <input type="button" name="bt" value="버튼">
+<input type="button" name="bt1" value="버튼1">
 </form>
 </body>
 </html>
