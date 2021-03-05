@@ -53,7 +53,7 @@ public class BoardController {
 	
 	@RequestMapping(value="boardList.do")
 	public String listBoard(Model model) {
-		model.addAttribute("list", dao.selectBoard());//map만 넣었어 
+		model.addAttribute("list", dao.selectBoard());
 		return "Project/other/notice";
 	}
 	
@@ -64,7 +64,6 @@ public class BoardController {
 			//System.out.println(no);
 			model.addAttribute("selectInfo",dao.selectInfo(no));
 			model.addAttribute("list",dao.selectBoard());
-			model.addAttribute("filename",filenamez); //0205 생성
 			return "Project/other/noticeInfo";
 		}
 		return "Project/other/notice";
